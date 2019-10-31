@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-gateway
+  namespace: dev
   annotations:
     fluxcd.io/automated: "true"
 ---
@@ -10,6 +11,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: github-service
+  namespace: dev
   annotations:
     fluxcd.io/automated: "true"
 ---
@@ -17,5 +19,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: repo-search-ui
+  namespace: dev
   annotations:
     fluxcd.io/automated: "true"
