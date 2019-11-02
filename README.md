@@ -33,16 +33,25 @@ kubectl create secret -n dev generic redis-secret --from-literal password=frieza
 brew install fluxctl
 kubectl create ns flux
 
-export GHUSER="kudoh"
-fluxctl install \
---git-user=${GHUSER} \
---git-email=${GHUSER}@users.noreply.github.com \
---git-url=git@github.com:${GHUSER}/flux-get-started \
---git-path=namespaces,workloads \
---namespace=flux | kubectl delete -f -
+helm repo add fluxcd https://charts.fluxcd.io && helm repo update
 
-kubectl rollout status deployment/flux -n flux
+GITHUB_USER=<your-github-name>
+helm upgrade flux --install fluxcd/flux --wait \
+  --set git.url=git@github.com:${GITHUB_USER}/repo-search-app-deployment.git \
+  --set git.branch=master \
+  --set git.path=overlays/flux \
+  --set registry.pollInterval=1m \
+  --set git.pollInterval=1m \
+  --set manifestGeneration=true \
+  --namespace flux
+
 fluxctl identity --k8s-fwd-ns flux
+https://github.com/kudoh/repo-search-app-deployment/settings/keys/new
+
+
+fluxctl sync --k8s-fwd-ns flux
+fluxctl list-workloads --k8s-fwd-ns flux -n dev
+fluxctl list-images --k8s-fwd-ns flux -n dev
 ```
 
 ## Argo CD

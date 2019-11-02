@@ -14,14 +14,6 @@ metadata:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.app: glob:flux-*
   name: flux-github-service
-spec:
-  template:
-    spec:
-      $setElementOrder/containers:
-      - name: github-service
-      containers:
-      - image: kudohn/github-service:v2
-        name: github-service
 ---
 apiVersion: apps/v1
 kind: Deployment
