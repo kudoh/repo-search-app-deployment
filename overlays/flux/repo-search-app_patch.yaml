@@ -6,6 +6,7 @@ metadata:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.api-gateway: glob:flux-*
   name: flux-api-gateway
+  namespace: dev
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -14,6 +15,7 @@ metadata:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.github-service: glob:flux-*
   name: flux-github-service
+  namespace: dev
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -22,3 +24,4 @@ metadata:
     fluxcd.io/automated: "true"
     fluxcd.io/tag.repo-search-ui: glob:flux-*
   name: flux-repo-search-ui
+  namespace: dev
