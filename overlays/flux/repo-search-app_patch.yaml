@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.app: glob:flux-*
+    fluxcd.io/tag.api-gateway: glob:flux-*
   name: flux-api-gateway
 ---
 apiVersion: apps/v1
@@ -12,7 +12,7 @@ kind: Deployment
 metadata:
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.app: glob:flux-*
+    fluxcd.io/tag.github-service: glob:flux-*
   name: flux-github-service
 ---
 apiVersion: apps/v1
@@ -20,5 +20,5 @@ kind: Deployment
 metadata:
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.app: glob:flux-*
+    fluxcd.io/tag.repo-search-ui: glob:flux-*
   name: flux-repo-search-ui
