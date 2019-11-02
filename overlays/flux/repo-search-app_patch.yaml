@@ -2,20 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    fluxcd.io/automated: "true"
   name: flux-api-gateway
-  annotations:
-    fluxcd.io/automated: "true"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    fluxcd.io/automated: "true"
   name: flux-github-service
-  annotations:
-    fluxcd.io/automated: "true"
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: github-service
+      containers:
+      - image: kudohn/github-service:v2
+        name: github-service
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flux-repo-search-ui
   annotations:
     fluxcd.io/automated: "true"
+  name: flux-repo-search-ui
