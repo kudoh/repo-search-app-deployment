@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: github-service
-        image: github-service:flux-v1
+        image: kudohn/github-service:flux-v1
         ports:
         - name: http
           containerPort: 8080

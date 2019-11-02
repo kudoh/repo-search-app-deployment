@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: repo-search-ui
-        image: repo-search-ui:flux-v1
+        image: kudohn/repo-search-ui:flux-v1
         ports:
           - name: http
             containerPort: 80
