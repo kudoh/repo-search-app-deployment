@@ -8,7 +8,7 @@ namePrefix: flux-
 configMapGenerator:
 - name: api-gateway-config
   literals:
-  - serviceURL=http://flux-github-service.default.svc.cluster.local/github
+  - serviceURL=http://flux-github-service.dev.svc.cluster.local/github
   - redisHost=redis-master.redis.svc.cluster.local
   - redisPort=6379
 images:
