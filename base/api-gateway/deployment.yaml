@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: api-gateway
-        tag: flux-v1
+        image: api-gateway:flux-v1
         ports:
         - name: http
           containerPort: 3000
