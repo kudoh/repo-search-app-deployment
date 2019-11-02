@@ -16,6 +16,14 @@ metadata:
     fluxcd.io/tag.github-service: glob:flux-*
   name: flux-github-service
   namespace: dev
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: github-service
+      containers:
+      - image: kudohn/github-service:flux-v2
+        name: github-service
 ---
 apiVersion: apps/v1
 kind: Deployment
