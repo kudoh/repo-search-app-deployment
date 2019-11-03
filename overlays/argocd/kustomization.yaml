@@ -1,0 +1,23 @@
+bases:
+- ../../base
+patchesStrategicMerge: []
+resources:
+- ingress.yaml
+namespace: dev
+namePrefix: argo-
+configMapGenerator:
+- name: api-gateway-config
+  literals:
+  - serviceURL=http://argo-github-service.dev.svc.cluster.local/github
+  - redisHost=redis-master.redis.svc.cluster.local
+  - redisPort=6379
+images:
+- name: api-gateway
+  newName: kudohn/api-gateway
+  newTag: argo-v1
+- name: github-service
+  newName: kudohn/github-service
+  newTag: argo-v1
+- name: repo-search-ui
+  newName: kudohn/repo-search-ui
+  newTag: argo-v1
