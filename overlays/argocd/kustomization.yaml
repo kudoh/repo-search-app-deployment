@@ -17,7 +17,7 @@ images:
   newTag: argo-v1
 - name: kudohn/github-service
   newName: kudohn/github-service
-  newTag: argo-v1
+  newTag: argo-v2
 - name: kudohn/repo-search-ui
   newName: kudohn/repo-search-ui
   newTag: argo-v1
