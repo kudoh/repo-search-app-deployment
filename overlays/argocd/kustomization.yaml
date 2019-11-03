@@ -12,12 +12,12 @@ configMapGenerator:
   - redisHost=redis-master.redis.svc.cluster.local
   - redisPort=6379
 images:
-- name: api-gateway
+- name: kudohn/api-gateway
   newName: kudohn/api-gateway
   newTag: argo-v1
-- name: github-service
+- name: kudohn/github-service
   newName: kudohn/github-service
   newTag: argo-v1
-- name: repo-search-ui
+- name: kudohn/repo-search-ui
   newName: kudohn/repo-search-ui
   newTag: argo-v1
