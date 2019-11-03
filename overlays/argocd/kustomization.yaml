@@ -15,9 +15,9 @@ images:
 - name: kudohn/api-gateway
   newName: kudohn/api-gateway
   newTag: argo-v1
-- name: kudohn/github-service
+- name: github-service
   newName: kudohn/github-service
-  newTag: argo-v2
+  newTag: argo-v1
 - name: kudohn/repo-search-ui
   newName: kudohn/repo-search-ui
   newTag: argo-v1

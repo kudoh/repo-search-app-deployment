@@ -57,4 +57,36 @@ fluxctl list-images --k8s-fwd-ns flux -n dev
 ## Argo CD
 
 ```bash
+brew tap argoproj/tap
+brew install argoproj/tap/argocd
+
+kubectl create ns argocd
+helm repo add argo https://argoproj.github.io/argo-helm && helm repo update
+helm upgrade argo-cd --install argo/argo-cd --wait \
+  --set server.serviceType=LoadBalancer
+  --namespace=argocd
+
+# Web UI  
+kubectl get svc -n argocd argocd-server \
+  -o custom-columns=IP:status.loadBalancer.ingress[0].ip,PORT:spec.ports[0].port
+
+# admin password
+ARGO_IP=$(kubectl get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+ARGO_PASS=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argo-cd-server -o jsonpath='{.items[].metadata.name}')
+argocd login --username admin --password $ARGO_PASS $ARGO_IP
+CONTEXT=local-k8s-tester
+argocd cluster add $CONTEXT
+
+# create application
+GITHUB_USER=<your-github-name>
+argocd proj create mamezou --src https://github.com/${GITHUB_USER}/repo-search-app-deployment.git \
+  --dest "https://kubernetes.default.svc,dev"
+argocd app create repo-search-app \
+  --project mamezou \
+  --repo https://github.com/${GITHUB_USER}/repo-search-app-deployment.git \
+  --path overlays/argocd \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace dev \
+  --sync-policy automated
+
 ```
